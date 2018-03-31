@@ -1,0 +1,111 @@
+<%= render 'partial/navbar' %>
+<div class="container">
+   <div class="row">
+        <div class="col-sm-9">
+         <div class="row">
+			<div class="page-header col-md-8">
+				<h4>バイト一覧</h4>
+			</div>
+		</div>
+        検索フォーム 
+        <section class="search-form">
+             <%= form_tag(jobs_path, method: "get") do %>
+         	   <table class="table table-bordered">
+             	<tbody>
+               		
+               		<!--   <th class="col-md-3"><i class="far fa-calendar-alt"></i> 日程</th>-->
+               		<!--	 <td td class="col-md-9 form-inline">-->
+               		<!--   		<div class="form-group">-->
+                 <!-- 			    <div class='input-group date' id='datetimepicker1'>-->
+                 <!-- 				   <input type='text' class="form-control" />-->
+                 <!-- 				   <span class="input-group-addon">-->
+                 <!-- 					  <span class="glyphicon glyphicon-calendar"></span>-->
+                 <!-- 				   </span>-->
+                 <!-- 			    </div>-->
+                 <!--           </div>-->
+               		<!--	</td>-->
+               		<!--</tr>-->
+               		<tr>
+               			<th class="col-md-3">日程</th>
+               			<td td class="col-md-9 form-inline">
+               			   <%= text_field_tag :date, params[:date] ,:id => 'datepicker' %>
+               			</td>
+             		</tr>
+               		<tr>
+               			<th class="col-md-3">場所</th>
+               			<td td class="col-md-9 form-inline">
+               			   <%= text_field_tag :place, params[:place] %>
+               			</td>
+             		</tr>
+             		<tr>
+               			<th class="col-md-3">時給</th>
+               			<td td class="col-md-9 form-inline">
+               			   <%= text_field_tag :price_perhour, params[:price_perhour] %>
+               			</td>
+             		</tr>
+             		<tr>
+               			<th class="col-md-3">キーワード</th>
+               			<td td class="col-md-9 form-inline">
+               			   <%= text_field_tag :name, params[:name] %>
+               			</td>
+             		</tr>
+             	</tbody>
+        </table>
+        <div class="row">
+              <%= submit_tag "検索する" ,class:"btn btn-warning btn-lg active btn-search col-md-5 col-sm-7 col-xs-10" %>
+        </div>
+        <% end %>
+     
+      <div class="list jumbotron col-md-12 col-sm-12 col-xs-12">
+        	<% @jobs.each do |job| %>
+   			<div class="panel panel-primary panel-list">
+       		<div class="panel-heading"></div>
+               
+   			   <div class="panel-body">
+   				    <div class="panel-title">
+   				       <div class="row">
+     				      	 <%= image_tag 'indexPhoto01',class: "panel-img col-md-4" %>
+  					          <div class="panel-tags">
+            						  <button type="button" class="btn btn-primary btn-xs">お米農家</button>
+            						  <button type="button" class="btn btn-primary btn-xs">厚木市</button>
+          					  </div>
+           					 <h3 class="col-md-6">
+           					   	<%= job.name %>
+           					 </h3>
+  					         <%= link_to "詳しく", job_path(job), class:"btn btn-default btn-lage"  %>
+				         </div>
+				      </div>	
+    			   <table class="table table-condensed">
+             <tbody>
+                <tr>
+                  <td><p><i class="fa fa-map-marker"></i> 日程</p></td>
+                  <td><p><%= job.date %></p></td>
+                </tr>
+                <tr>
+                  <td><p><i class="fa fa-map-marker"></i> 時給</p></td>
+                  <td><p><%= job.price_perhour %>円</p></td>
+                </tr>
+                <tr>
+                  <td><p><i class="fa fa-map-marker"></i> 場所</p></td>
+                  <td><p><%= job.place %></p></td>
+                </tr>
+            </tbody>
+         </table>
+         <button type="button" class="btn btn-warning btn-lg active btn-send">応募する　<i class="fa fa-chevron-right"></i></button>
+			    </div>
+     </div>
+    <% end %>
+        </div>
+        </section>
+         <!-- end search-form -->
+      </div>
+   </div>
+</div>
+<%= render 'partial/footer' %>
+<script>
+  $(function(){
+    $("#datepicker").datepicker();
+  });
+  $(document).ready(ready)
+  $(document).on('turbolinks:load', ready)
+</script>

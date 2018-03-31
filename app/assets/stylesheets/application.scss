@@ -1,0 +1,549 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import 'slick';
+@import 'slick-theme';
+@import "font-awesome";
+@import "toastr";
+@import "jquery-ui/datepicker";
+@import "jquery-bootstrap-datepicker";
+
+.index .jumbotron {
+ padding-top: 0px;
+/*    // 背景画像を暗くする*/
+ background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05) ), url(top_img.jpg);
+ background-size: cover;
+/*  // 背景画像の位置を決める*/
+  background-position: 70% 30%;
+  height: 420px;
+  position: relative;
+}
+
+.jumbotron {
+  padding-top: 0px;
+/*    // 背景画像を暗くする*/
+	margin-bottom: 18px;
+	padding-bottom: 18px;
+	background-color: transparent;
+}
+
+.jumbotron p{
+	font-size: 17px
+}
+
+.jumbotron h3{
+	font-weight: bold;
+} 
+
+
+/* navbar */
+
+.navbar{
+    border-radius: 0;
+    border: none;
+    background-color: #67942B; /* ベース基調となる濃い青 */
+    margin-bottom: 20px !important;
+}
+
+.navbar-brand{
+	color: #ffffff !important;	
+}
+
+.navbar-right{
+	padding-right: 20px
+}
+
+.navbar-default .navbar-nav >li > a{
+    color: #fff;
+}
+
+.navbar-default .navbar-nav >li > a:hover{
+    color: #DEDEDE;
+}
+
+// プロフィール画像
+.profile-0{
+    width: 28px;
+    height: 28px;
+}
+
+.profile-1{
+    width: 50px;
+    height: 50px;
+}
+
+.profile-2{
+    width: 100px;
+    height: 100px;
+}
+
+/* カルーセル */
+.navbar{
+    /* トップメニュー下のマージンを除去 */
+    margin-bottom: 0;
+}
+
+.carousel-inner img{
+    width: 100%;
+	background-size: cover;
+}
+
+.carousel-caption{
+    text-align: right;
+    /* Bootstrapぽくて、バタ臭いので消す */
+    text-shadow: none;
+}
+
+/* headre */
+.display-3{
+	margin-top: 150px;
+	color: #ffffff !important;
+}
+
+/*// Top Search-fieldのcss*/
+.top-search-field{
+  height: 90px;
+  background: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px 0;
+  background: rgba(0,0,0,0.6);
+}
+
+@media (min-width: 992px){
+  .top-search-field .col-md-7,.col-md-2,.col-md-1{
+    padding: 0;
+  }
+}
+
+.top-search-field input{
+  border-radius: 0;
+}
+
+/* sub-content */
+.sub-title{
+	margin-top: 50px;
+	margin-bottom: 20px;
+	font-size: 34px;
+	color: #44A33E;
+	line-height: 45px
+}
+
+.sub-title-text{
+	text-align: center;
+	font-size: 16px;
+}
+
+.sub-content h3{
+	text-align: center;
+	color: #347D30;
+	margin: 40px 0 40px 0;
+}
+
+@media (max-width: 767px){
+  .sub-title-text{
+	 margin: 0px 20px 0px 20px;
+	}
+	
+  .sub-title{
+	margin-top: 30px;
+	font-size: 20px;
+	line-height: 30px
+	}
+	
+	.sub-content h3{
+	margin: 35px 0 20px 0;
+	}
+}
+
+/* card */
+.cards{
+	padding-bottom: 18px !important;
+}
+
+.card{
+// 	margin: 0 5px 10px 5px !important;
+    // margin-left: 5px;
+    // margin-right
+}
+
+.card img{
+	width: 480px;
+	height: 140px;
+}
+
+.card-content{
+    padding: 10px;
+}
+
+.card-title{
+	font-size: 15px !important;
+	line-height: 22px !important;
+	font-weight: 700 !important;
+	color: #000000 !important;
+}
+
+.card a{
+	font-size: 15px;
+}
+
+.fa-map-marker{
+	font-size: 15px;
+	color: #FF0000;
+}
+
+/* フッター */
+
+#footer{
+    margin-top: 70px;
+    text-align: center;
+    padding: 40px 0;
+    background-color: #67942B;
+}
+
+#footer .navbar-nav{
+    float: none;
+    width: 420px;
+    margin: 10px auto;
+}
+
+
+#footer .navbar-nav>li{
+    text-align: center;
+    width: 80px;
+    font-size: 12px;
+}
+
+#footer .navbar-nav>li>a{
+    color: #fff;
+}
+
+.sns-icon{
+    margin-top: 30px;
+}
+
+.sns-icon li{
+    padding-left: 20px;
+    color: #fff;
+}
+
+.sns-icon li i{
+	font-size: 28px !important;
+}
+
+.sns-icon li:hover{
+    color: #aaa;
+}
+
+.copy{
+    margin-top: 20px;
+    color: #fff;
+    font-size: 12px;
+}
+
+/* for smart phone */
+@media (max-width: 767px){
+
+    .title{
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .panel{
+        /* 最大を300pxに固定する */
+        width: 320px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+
+    #footer .navbar-nav{
+        /* footer menuのトータル幅を調整 */
+        width: 340px;
+    }
+
+    #footer .navbar-nav>li{
+        /* メニュー幅を小さく*/
+        width: 60px;
+        font-size: 10px;
+    }
+
+    .carousel-caption > h3{
+        visibility: hidden;
+    }
+
+    .carousel-caption > p{
+        visibility: hidden;
+    }
+}
+
+//  sign_in sign_up
+
+.colorgraph{
+    height: 5px;
+    background: #67942B;
+}
+
+.jump{
+    margin-top: 10px;
+}
+
+.btn-facebook{
+    color: #fff;
+    background-color: #4c66a4;
+}
+
+// prifile
+
+.top-img{
+	height: 350px;
+	object-fit: cover;
+	padding: 0px;
+}
+
+.title .panel{
+	margin: 0 auto !important;
+}
+
+.title .panel i{
+	color: blue
+}
+
+@media (max-width: 556px){
+	.jumbotron h5{
+		font-size: 19px !important;
+	}
+	
+	.jumbotron p{
+	font-size: 15px
+	}
+}
+
+@media (max-width: 767px){
+	.top-img{
+		height: 300px;
+	}
+	
+	.title .panel{
+		width: 100%;
+	}
+}
+
+/*content*/
+.content{
+	 padding-top: 0px !important;
+}
+
+.content p{
+	font-size: 16px
+}
+
+/* slider */
+.cards{
+	padding-bottom: 18px !important;
+}
+
+.card{
+	margin: 0 5px 10px 5px;
+}
+
+.card img{
+	width: 480px;
+	height: 140px;
+}
+
+.card-title{
+	font-size: 15px !important;
+	line-height: 22px !important;
+	font-weight: 700 !important;
+}
+
+.card a{
+	font-size: 15px;
+}
+
+.fa-map-marker{
+	font-size: 15px;
+	color: #FF0000;
+}
+
+/* table */
+.job-table h5{
+	margin: 0 auto;
+	padding: 10px;
+	font-weight: bold;
+}
+
+.job-table table{
+	margin-top: 2px;
+}
+
+.job-table tr{
+	height: 43px !important;
+} 
+
+.job-table th{
+	padding-left: 20px !important;
+	vertical-align: middle !important;
+	background-color: #DBDBDB;
+	border-bottom-color: #ffffff !important;
+}
+
+.job-table td{
+	vertical-align: middle !important;
+}
+
+/* button */
+
+.send .row{
+	display: flex;
+}
+.send button{
+	padding: 20px;
+	margin: 5px;
+}
+
+// profile edit
+.profile-edit{
+    margin-top: 50px !important;
+     margin-bottom: 50px;
+}
+
+.btn-plofile{
+    width: 300px;
+    margin: 30px;
+}
+
+.btn-full{
+    width: 100%;
+}
+
+@media (max-width: 767px){
+    .btn-plofile{
+    width: 200px;
+    margin: 20px;
+}	
+}
+
+.send-buttons{
+	width: 300px;
+}
+
+/* list */
+.panel-list { 
+	margin-top: 25px; }
+
+.panel-img{
+	width: 156px;
+	height: 117px;
+	background-size: cover;
+}
+
+.table-condensed{
+	margin-top: 12px;
+}
+
+.panel-tags{
+	display: flex;
+}
+
+.panel-tags p{
+	font-size: 14px;}
+
+.btn-send{
+	float: left;
+}
+
+.btn-click
+{
+margin-top: -27px;
+font-size: 26px;
+cursor: pointer;   
+}
+
+.btn-click > .fa.fa-chevron-circle-up
+{
+color: rgba(249, 249, 249, .5);
+}
+
+.btn-white 
+{
+color: #5e5e5e;
+background-color: #fff;
+border: 1px solid #e5e9ec;
+}
+
+@media (max-width: 767px){
+     .panel-list{
+    width: 100%;
+    }   
+}
+
+// links
+.send-buttons{
+    margin: 0 auto !important;
+}
+
+.button-line{
+    border-bottom: solid 3px #ACD9A6;
+    font-size: 20px !important;
+    text-decoration: none !important;
+    margin-bottom: 30px;
+}
+
+// search form
+/* form */
+
+.search-form form{
+	border: solid 1px #c7c7c7;
+	box-shadow:5px 5px 15px; 
+}
+
+.search-form th{
+	vertical-align: middle !important;
+	font-size: 16px;
+	background-color: #d6d6d6;
+	border-bottom: 1px solid #ffffff !important;
+}
+
+.search-form input{
+	border: solid 1px #C7C7C7 !important;
+	border-radius: 3px 3px 3px 3px !important;
+}
+
+.form-place{
+	width: 160px !important;	
+}
+
+.form-keyword{
+	width: 80% !important;
+}
+
+.form-price{
+	width: 59%;
+}
+
+@media (max-width: 767px){
+	.form-place{
+		width: 260px;
+	}
+	
+	.date{
+		width: 260px ;
+	}
+	
+	.form-price{
+		width: 260px;
+	}
+}
+
+.search-form .btn-search{
+	margin-left: 13px !important; 
+}
+
+// google map
+#map{
+	width: 100%;
+	height: 350px;
+	margin-bottom: 40px;
+}

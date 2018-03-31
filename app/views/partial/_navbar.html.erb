@@ -1,0 +1,82 @@
+<nav class="navbar navbar-default">
+    <div class="navbar-inner">
+    	<div class="navbar-header">
+            <!-- logo img -->
+            <a class="navbar-brand" href="/">
+                畑らく学生ネット
+            </a>
+            <!-- toggle -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top-nav">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- top menu -->
+        <div class="collapse navbar-collapse" id="top-nav">
+            <!-- main navbar -->
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="">お仕事探し</a>
+                </li>
+                <li>
+                    <a href="">農家から探す</a>
+                </li>
+            </ul>
+
+            <!-- right navbar -->
+            <ul class="nav navbar-nav navbar-right">
+                <% if (farmer_signed_in?) %>
+                <!-- 農家がログインしているとき -->
+                    <li><%= link_to "お仕事を作成する", new_job_path %></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <!-- image -->
+                            <%= image_tag current_farmer.image, class:"img-circle profile-0" %>
+                            <%= current_farmer.name %>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                             <li><%= link_to "プロフィール", farmer_path(current_farmer) %></li>
+                             <li><%= link_to "プロフィール編集", edit_farmer_registration_path %></li>
+                             <li><%= link_to "ログアウト", destroy_farmer_session_path, method: :delete %></li>   
+                        </ul>
+                    </li>
+                    <!--　学生がログインしている時 -->
+                    <% elsif (student_signed_in?) %>
+                        <li><%= link_to "お仕事に応募する" , jobs_path%></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <!-- image -->
+                                <%= image_tag current_student.image, class:"img-circle profile-0" %>
+                                <%= current_student.name %>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                 <li><%= link_to "ログアウト", destroy_student_session_path, method: :delete %></li>
+                                 <li><%= link_to "応募一覧", reservations_path %></li>
+                                 <li><%= link_to "プロフィール", student_path(current_student) %></li>
+                                 <li><%= link_to "プロフィール編集", edit_student_registration_path %></li>
+                            </ul>
+                        </li>
+                    <% else %>
+                    <!-- ログインしていない時 -->
+                    <li role="presentation" class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        農家の方はこちら <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><%= link_to "お仕事を作成する", new_job_path %></li>
+                        <li><%= link_to "ログイン", new_farmer_session_path %></li>
+                        <li><%= link_to "会員登録", new_farmer_registration_path %></li>
+                      </ul>
+                    </li>
+                    <li><%= link_to "お仕事を作成する", new_job_path %></li>
+                    <li><%= link_to "ログイン", new_student_session_path %></li>
+                    <li><button class="btn btn-warning  btn-lg active"><%= link_to "会員登録", new_student_registration_path %></button></li>
+                <% end %>
+            </ul>
+        </div>  	
+    </div>
+</nav>

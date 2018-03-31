@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student: one
+  job: one
+  date: 2018-03-20 08:50:16
+  end_date: 2018-03-20 08:50:16
+  price_perhour: 1
+  total_price: 1
+
+two:
+  student: two
+  job: two
+  date: 2018-03-20 08:50:16
+  end_date: 2018-03-20 08:50:16
+  price_perhour: 1
+  total_price: 1

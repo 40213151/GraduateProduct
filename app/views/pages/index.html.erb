@@ -1,0 +1,209 @@
+<div class="index">
+<div class="jumbotron">
+<%= render 'partial/navbar' %>
+
+<!-- search form -->
+<div class="container">
+   <div class="row">
+     <div class="col-md-6 col-md-offset-3 text-center">
+       <h1 class="display-3">畑らく学生ネット</h1>
+     </div>
+   </div> 
+  </div>
+  
+  <!-- Search Form -->
+  <div class="top-search-field">
+    <%= form_tag search_path, method: :get do %>
+      <div class="row">
+        <div class="container">
+          
+          <%= hidden_field_tag :lat %>
+          <%= hidden_field_tag :lng %>
+
+          <div class="col-md-7 col-xs-10" style="padding-right: 0px">
+            <%= text_field_tag :search, params[:search], placeholder: "希望の場所はどこですか？", class: "form-control",id:"top-search-form" %>
+          </div>
+
+          <div class="col-md-2 hidden-xs hidden-sm">
+            <%= text_field_tag :start_date, params[:start_date], placeholder: "チェックイン", class: "form-control" %>
+          </div>
+          <div class="col-md-2 hidden-xs hidden-sm">
+            <%= text_field_tag :end_date, params[:end_date], placeholder: "チェックアウト", class: "form-control" %>
+          </div>
+          <div class="col-md-1 col-xs-2" style="padding-left: 0px; ">
+            <%= submit_tag "検索", class: "btn btn-danger" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
+
+ <div class="sub-content container">
+        <!-- title -->
+        <h2 class="sub-title text-center">農家で単発バイト<br>やってみませんか？</h2>
+        <!-- text -->
+        <div class="row">
+            <div class="text-box col-sm-12　text-center sub-title-text">
+                朝から夕方まで、好きな時間帯に稼ぎたいだけ稼げます<br>
+                農家バイトで、健康にイキイキとした生活を送りましょう！
+            </div>
+        </div>
+     
+        <h3>新着の仕事</h3>
+       	       	<div class="cards">
+        	<!--Card Reveal-->
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <div class="view overlay hm-white-slight z-depth-1">
+                            <%= image_tag 'indexPhoto01'%>
+                            <div class="mask waves-effect activator"></div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                       	<p><i class="fa fa-map-marker"></i> <a>神奈川県厚木市</a></p>
+                        <span class="card-title activator grey-text text-darken-4">農家バイト募集中！草刈り、芋掘りなどの作業です 体力に自信の自信のある方、大歓迎!</span>
+                    </div>
+                </div>
+                <!--/.Card Reveal-->
+                <!--Card Reveal-->
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <div class="view overlay hm-white-slight z-depth-1">
+                            <%= image_tag 'indexPhoto01'%>
+                            <div class="mask waves-effect activator"></div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                       	<p><i class="fa fa-map-marker"></i> <a>神奈川県厚木市</a></p>
+                        <span class="card-title activator grey-text text-darken-4">農家バイト募集中！草刈り、芋掘りなどの作業です 体力に自信の自信のある方、大歓迎!</span>
+                    </div>
+                </div>
+                <!--/.Card Reveal-->
+                <!--Card Reveal-->
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <div class="view overlay hm-white-slight z-depth-1">
+                            <%= image_tag 'indexPhoto01'%>
+                            <div class="mask waves-effect activator"></div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                       	<p><i class="fa fa-map-marker"></i> <a>神奈川県厚木市</a></p>
+                        <span class="card-title activator grey-text text-darken-4">農家バイト募集中！草刈り、芋掘りなどの作業です 体力に自信の自信のある方、大歓迎!</span>
+                    </div>
+                </div>
+                <!--/.Card Reveal-->
+                <!--Card Reveal-->
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <div class="view overlay hm-white-slight z-depth-1">
+                            <%= image_tag 'indexPhoto01'%>
+                            <div class="mask waves-effect activator"></div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                       	<p><i class="fa fa-map-marker"></i> <a>神奈川県厚木市</a></p>
+                        <span class="card-title activator grey-text text-darken-4">農家バイト募集中！草刈り、芋掘りなどの作業です 体力に自信の自信のある方、大歓迎!</span>
+                    </div>
+                </div>
+                <!--/.Card Reveal-->
+                <!--Card Reveal-->
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <div class="view overlay hm-white-slight z-depth-1">
+                            <%= image_tag 'indexPhoto01'%>
+                            <div class="mask waves-effect activator"></div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                       	<p><i class="fa fa-map-marker"></i> <a>神奈川県厚木市</a></p>
+                        <span class="card-title activator grey-text text-darken-4">農家バイト募集中！草刈り、芋掘りなどの作業です 体力に自信の自信のある方、大歓迎!</span>
+                    </div>
+                </div>
+                <!--/.Card Reveal-->
+                <!--Card Reveal-->
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <div class="view overlay hm-white-slight z-depth-1">
+                            <%= image_tag 'indexPhoto01'%>
+                            <div class="mask waves-effect activator"></div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                       	<p><i class="fa fa-map-marker"></i> <a>神奈川県厚木市</a></p>
+                        <span class="card-title activator grey-text text-darken-4">農家バイト募集中！草刈り、芋掘りなどの作業です 体力に自信の自信のある方、大歓迎!</span>
+                    </div>
+                </div>
+                <!--/.Card Reveal-->
+         </div>
+   </div>
+   </div>
+   <%= render 'partial/footer' %>
+<script>
+	$('.cards').slick({
+  dots: true,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+</script>
+<script>
+function init() {
+
+  var input = /** @type {!HTMLInputElement} */(
+      document.getElementById('top-search-form'));
+
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  
+  autocomplete.addListener('place_changed', function() {
+
+    var place = autocomplete.getPlace();
+    var lat = place.geometry.location.lat();
+    var lng = place.geometry.location.lng();
+
+    document.getElementById('lat').value = lat ;
+    document.getElementById('lng').value = lng ;
+
+    if (!place.geometry) {
+      window.alert("Autocomplete's returned place contains no geometry");
+      return;
+    }
+
+  });
+}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYa7BUZC8vDfbqree2TYehmkX6S8r2ugk&signed_in=true&libraries=places&callback=init"
+    async defer></script>
+

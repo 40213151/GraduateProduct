@@ -1,0 +1,243 @@
+<%= render 'partial/navbar' %>
+<div class="show">
+<main class="container">
+	<div class="row">
+        <!-- title -->
+		<section class="title">
+			 <div class="jumbotron col-md-12 col-xs-12 col-sm-12">
+				<h3><%= @job.name %></h3>
+				<p><i class="fa fa-map-marker"></i><%= @job.date %></p>
+				<% @job.job_images.each do |image| %>
+                      <%= attachment_image_tag image, :image, class:"img-responsive top-img col-md-12 col-sm-12" %>
+                <% end %>
+	    		<div class="col-md-4 col-sm-12 col-xs-12 text-center panel panel-default">
+	    			<div class="pane-body">
+	    				<p><i class="fa fa-user"></i>時給</p>
+	    				<p class="panel-content"><%= @job.price_perhour %></p>
+	    			</div>
+	    		</div>
+	    		<div class="col-md-4 col-sm-12 col-xs-12 text-center panel panel-default">
+	    			<div class="pane-body">
+	    				 <p><i class="fa fa-map-marker"></i> 場所</p>
+	    				<p class="panel-content"><%= @job.place %></p>
+	    			</div>
+	    		</div>
+	    		<div class="col-md-4 col-sm-12 col-xs-12 text-center panel panel-default">
+	    			<div class="pane-body">
+	    				 <p><i class="fa fa-fire"></i> 仕事内容</p>
+	    				<p class="panel-content"><%= @job.character %></p>
+	    			</div>
+	    		</div>
+	    	 </div>
+		</section>
+        <!--  end title -->
+        
+        <!-- content -->
+        <section class="content">
+        	<div class="jumbotron col-md-12 col-xs-12 col-sm-12">
+        		<h3>なにをやるか</h3>
+        		<%= @job.description %>
+        	</div>
+       </section>
+        <!-- end content -->
+        
+        <!-- slider -->
+        <section class="slider">
+			<div class="jumbotron col-md-12 col-xs-12 col-sm-12">
+				<div class="cards">
+        	    <!--Card Reveal-->
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <div class="view overlay hm-white-slight z-depth-1">
+                            <%= image_tag 'moyashi02'%>
+                            <div class="mask waves-effect activator"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--/.Card Reveal-->
+                <!--Card Reveal-->
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <div class="view overlay hm-white-slight z-depth-1">
+                            <%= image_tag 'moyashi02'%>
+                            <div class="mask waves-effect activator"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--/.Card Reveal-->
+                <!--Card Reveal-->
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <div class="view overlay hm-white-slight z-depth-1">
+                            <%= image_tag 'moyashi02'%>
+                            <div class="mask waves-effect activator"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--/.Card Reveal-->
+                <!--Card Reveal-->
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <div class="view overlay hm-white-slight z-depth-1">
+                            <%= image_tag 'moyashi02'%>
+                            <div class="mask waves-effect activator"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--/.Card Reveal-->
+                <!--Card Reveal-->
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <div class="view overlay hm-white-slight z-depth-1">
+                            <%= image_tag 'moyashi02'%>
+                            <div class="mask waves-effect activator"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--/.Card Reveal-->
+                <!--Card Reveal-->
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <div class="view overlay hm-white-slight z-depth-1">
+                            <%= image_tag 'moyashi02'%>
+                            <div class="mask waves-effect activator"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--/.Card Reveal-->
+              </div>
+		    </div>
+        </section>
+        <!-- end slider -->
+        
+       <!--  table  -->
+       <section class="job-table">
+      			<div class="jumbotron">
+       			<div class="row">
+					<div class="col-md-10">
+					<h3>会社概要</h3>
+						<table class="table table-bordered">
+							<tbody>
+								<tr>
+									<th class="col-md-3 col-sm-3 col-xs-3">会社名</th>
+									<td class="col-md-9 col-sm-9 col-xs-9"><%= @job.farmer.name %></td>
+								</tr>
+								<tr>
+									<th class="col-md-3 col-sm-3 col-xs-3">代表</th>
+									<td class="col-md-9 col-sm-9 col-xs-9"><%= @job.farmer.leader_name %></td>
+								</tr>
+								<tr>
+									<th class="col-md-3 col-sm-3 col-xs-3">住所</th>
+									<td class="col-md-9 col-sm-9 col-xs-9"><%= @job.farmer.place %></td>
+								</tr>
+								<tr>
+									<th class="col-md-3 col-sm-3 col-xs-3">連絡先</th>
+									<td class="col-md-9 col-sm-9 col-xs-9"><%= @job.farmer.phone_number %></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+		         </div>
+
+      			</div>
+       </section>
+    <!-- table end -->
+    
+    <!-- google map -->
+    <section class="map">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-10">
+                    <h3>場所</h3>
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- google map end -->
+    
+    <!--  send  -->
+    <section class="send">
+    	<div class="jumbotron">
+    		<div class="row">
+				<%= form_for [@job, @job.reservations.new] do |f| %>
+				    <!-- 応募するときに、一緒におくる、データです。-->
+                    <%= f.hidden_field :job_id, value: @job.id %>
+                    <%= f.hidden_field :price_perhour, value: @job.price_perhour %>
+                    <%= f.hidden_field :total_price, id:'reservation_total_price' %>
+			        <%= f.submit "応募する", class: "btn btn-warning btn-lg col-md-5 col-sm-6 col-xs-6 send-buttons" %>
+			    <% end %>
+			</div>
+    	</div>
+    </section>
+    <!--  send end  -->
+   	</div>
+</main>
+</div>
+<%= render 'partial/footer' %>
+<!-- google map  -->
+<script>
+function initMap() {
+  
+  // Create the map.
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 14,
+    center: {lat: <%=@job.latitude %>, lng: <%= @job.longitude %>},
+    mapTypeId: google.maps.MapTypeId.TERRAIN
+  });
+
+
+  // Add the circle for this city to the map.
+  var cityCircle = new google.maps.Circle({
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: '#FF0000',
+    fillOpacity: 0.35,
+    map: map,
+    center: {lat: <%= @job.latitude %>, lng: <%= @job.longitude %>},
+    radius: 500
+  });
+  
+}
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYa7BUZC8vDfbqree2TYehmkX6S8r2ugk&signed_in=true&callback=initMap">
+</script>
+<script>
+	$('.cards').slick({
+  dots: true,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 3,
+  slidesToScroll: 3,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+</script>
