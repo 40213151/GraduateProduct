@@ -1,0 +1,78 @@
+<%= render 'partial/navbar' %>
+<div class="show">
+<main class="container">
+	<div class="row">
+        <!-- title -->
+		<section class="title">
+			 <div class="jumbotron col-md-12 col-xs-12 col-sm-12">
+				<h2 class="blog_title"><%= @blog.blog_title %></h2>
+				<div class="row text-center blog-sub-title">
+				    <div class="col-md-6">
+				        <i class="fa fa-map-marker"></i><%= @blog.created_at.strftime("%Y年%m月%d日") %>
+				    </div>
+				    <div class="col-md-6">
+				        <%= image_tag @blog.farmer.image, class:"img-circle profile-0" %>
+                        <%= @blog.farmer.name %>
+                    </div>
+				</div>
+				<% @blog.blog_images.each do |image| %>
+                      <%= attachment_image_tag image, :image, class:"img-responsive top-img col-md-12 col-sm-12" %>
+                <% end %>
+	    	 </div>
+		</section>
+        <!--  end title -->
+        
+        <!-- content -->
+        <section class="content">
+        	<div class="jumbotron col-md-12 col-xs-12 col-sm-12">
+        		<%= simple_format(@blog.blog_content) %>
+        	</div>
+       </section>
+        <!-- end content -->
+        
+       <!--  table  -->
+       <section class="job-table">
+      			<div class="jumbotron">
+       			<div class="row">
+					<div class="col-md-10">
+					<h3>会社概要</h3>
+						<table class="table table-bordered">
+							<tbody>
+								<tr>
+									<th class="col-md-3 col-sm-3 col-xs-3">会社名</th>
+									<td class="col-md-9 col-sm-9 col-xs-9"><%= @blog.farmer.name %></td>
+								</tr>
+								<tr>
+									<th class="col-md-3 col-sm-3 col-xs-3">代表</th>
+									<td class="col-md-9 col-sm-9 col-xs-9"><%= @blog.farmer.leader_name %></td>
+								</tr>
+								<tr>
+									<th class="col-md-3 col-sm-3 col-xs-3">住所</th>
+									<td class="col-md-9 col-sm-9 col-xs-9"><%= @blog.farmer.place %></td>
+								</tr>
+								<tr>
+									<th class="col-md-3 col-sm-3 col-xs-3">連絡先</th>
+									<td class="col-md-9 col-sm-9 col-xs-9"><%= @blog.farmer.phone_number %></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+		         </div>
+
+      			</div>
+       </section>
+    <!-- table end -->
+    
+    <!--  send  -->
+    <section class="send">
+    	<div class="jumbotron">
+    		<div class="row">
+				<button type="button" class="btn btn-warning btn-lg col-md-5 col-sm-6 col-xs-6 send-buttons"><i class="fa fa-star"></i> お気に入り</button>
+			</div>
+    	</div>
+    </section>
+    <!--  send end  -->
+   	</div>
+</main>
+</div>
+<%= render 'partial/footer' %>

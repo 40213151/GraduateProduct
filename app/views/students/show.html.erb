@@ -7,7 +7,7 @@
 			 <div class="jumbotron col-md-12 col-xs-12 col-sm-12">
 				<h3><%= @student.name %></h3>
 				<p><i class="fa fa-map-marker"></i><%= @student.place %></p>
-				<%= image_tag current_student.image, class:"img-responsive top-img col-md-12 col-sm-12" %>
+				<%= image_tag @student.image, class:"img-responsive top-img col-md-12 col-sm-12" %>
 	    		<div class="col-md-4 col-sm-12 col-xs-12 text-center panel panel-default">
 	    			<div class="pane-body">
 	    				 <p><i class="fa fa-map-marker"></i> 場所</p>
@@ -34,7 +34,7 @@
         <section class="content">
         	<div class="jumbotron col-md-12 col-xs-12 col-sm-12">
         		<h3>自己PR</h3>
-        		<%= @student.description_pr %>
+        		<%= simple_format(@student.description_pr) %>
         	</div>
        </section>
         <!-- end content -->
@@ -43,7 +43,7 @@
         <section class="content">
         	<div class="jumbotron col-md-12 col-xs-12 col-sm-12">
         		<h3>興味のあること</h3>
-        		<%= @student.description_interested %>
+        		<%= simple_format(@student.description_interested) %>
         	</div>
        </section>
         <!-- end content -->
@@ -72,16 +72,15 @@
        </section>
     <!-- table end -->
     
-    <!-- near jobs -->
+    <!-- reviews -->
     <section class="near-jobs">
       <div class="jumbotron">
         <div class="row">
           <div class="col-md-10">
-            <h3>近くの農家</h3>
-
-            <% @farmer.each do |farmer|  %>
-              <%= farmer.name %>
-            <% end %>
+            <h3>レビュー<%= @reviews.count %>件</h3>
+            <div id="average_star_rate"></div>
+              <%= render 'reviews/form' if !@currentFarmerReview %>
+              <%= render 'reviews/list' %>
           </div>
         </div>
       </div>
@@ -102,39 +101,9 @@
 </div>
 <%= render 'partial/footer' %>
 <script>
-	$('.cards').slick({
-  dots: true,
-  infinite: false,
-  speed: 300,
-  slidesToShow: 3,
-  slidesToScroll: 3,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        infinite: true,
-        dots: true
-      }
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
-    }
-    // You can unslick at a given breakpoint now by adding:
-    // settings: "unslick"
-    // instead of a settings object
-  ]
-});
+  $('#average_star_rate').raty({
+    path: '/assets',
+    readOnly: true,
+    score: <%= @student.average_star_rate %>
+  });
 </script>

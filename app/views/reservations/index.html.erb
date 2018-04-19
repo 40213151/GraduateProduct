@@ -1,28 +1,32 @@
 <%= render 'partial/navbar' %>
 
 <div class="container"> 
-  <div class="col-md-10 col-md-offset-1">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <div class="text-center">
-          <span style="font-size:18px;">お仕事一覧</span>
-        </div>
-      </div>
-      <ul class="ul-unstyled">
-        <% @reservations.each do |reservation| %>
-          <li class="panel-body">
-            <div class="row-table">
-              <div class="col-md-3 col-sm-3 col-middle row-space-2">
-              </div>
-
-              <div class="col-sm-7 col-lg-7 col-middle row-space-2">
-                <span class="listing-title"><%= reservation.job.name %></span>
-              </div>
-
+      <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="text-center">
+                    <span style="font-size:18px;">予約一覧</span>
+                </div>
             </div>
-          </li>
-        <% end %>       
-      </ul>   
+            <ul class="ul-unstyled">
+                <% @reservations.each do |reservation| %>
+                    <li class="panel-body">
+                        <div class="row-table">
+                            <div class="col-md-3 col-sm-3 col-middle row-space-2">
+                                <div class="panel-list-img text-center">
+                                    <% reservation.job.job_images.each do |image| %>
+	                                  <%= attachment_image_tag image, :image, class:"panel-img col-md-4" %>
+	                	            <% end %>    
+                                </div> 
+                            </div>
+
+                            <div class="col-sm-7 col-lg-7 col-middle row-space-2">
+                                <span class="blog-title"><%= link_to reservation.job.name,job_path(reservation.job) %></span>
+                            </div>
+                        </div>
+                    </li>
+                <% end %>               
+            </ul>     
+        </div>
     </div>
-  </div>
 </div>

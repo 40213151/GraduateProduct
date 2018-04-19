@@ -13,40 +13,7 @@
     	</div>
     	<div class="panel-body row">
     	  <div class="col-md-10">
-        <%= form_for @job do |f| %>
-        
-          <div class="form-group">
-            <label for="exampleFormControlInput1">お仕事のタイトルを教えてください</label>
-            <%= f.text_field :name, autofocus: true , :class => 'form-control' %>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">お仕事の特徴を一言で教えてください</label>
-            <%= f.text_field :character, autofocus: true , :class => 'form-control' %>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">仕事場のご住所はどこですか？</label>
-            <%= f.text_field :place, autofocus: true , :class => 'form-control' %>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">お仕事の予定日を教えてください</label>
-            <%= f.text_field :date, autofocus: true , :class => 'form-control', :id => 'datepicker' %>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">時給をおしえてください</label>
-            <%= f.text_field :price_perhour, autofocus: true , :class => 'form-control' %>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlTextarea1">どんなお仕事ですか？</label>
-            <%= f.text_area :description, rows: 5, cols: 25, :class => 'form-control' %>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlTextarea1">画像</label>
-            <%= f.attachment_field :job_images_images, multiple: true %>
-          </div>
-          <div class="actions">
-              <%= f.submit "プロフィールを更新", :class => "btn btn-primary btn-plofile btn-lg" %>
-          </div>
-        <% end %>
+          <%= render partial: "shared/job_form", locals: { job: @job } %>
         </div>
     	</div>
     </div>

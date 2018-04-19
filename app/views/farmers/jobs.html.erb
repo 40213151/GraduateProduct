@@ -1,94 +1,85 @@
 <%= render 'partial/navbar' %>
 <div class="show">
 <main class="container">
-	<div class="">
         <!-- title -->
 		<section class="title">
 			 <div class="jumbotron col-md-12 col-xs-12 col-sm-12">
-				<h3><%= current_farmer.name %></h3>
-				<p><i class="fa fa-map-marker"></i><%= current_farmer.place %></p>
+				<h3><%= @farmer.name %></h3>
+				<p><i class="fa fa-map-marker"></i><%= @farmer.place %></p>
 	    		<div class="col-md-4 col-sm-12 col-xs-12 text-center panel panel-default">
 	    			<div class="pane-body">
 	    				<p><i class="fa fa-user"></i> 従業員数</p>
-	    				<p class="panel-content"><%= current_farmer.member_number %></p>
+	    				<p class="panel-content"><%= @farmer.member_number %></p>
 	    			</div>
 	    		</div>
 	    		<div class="col-md-4 col-sm-12 col-xs-12 text-center panel panel-default">
 	    			<div class="pane-body">
 	    				 <p><i class="fa fa-map-marker"></i> 場所</p>
-	    				<p class="panel-content"><%= current_farmer.place %></p>
+	    				<p class="panel-content"><%= @farmer.place %></p>
 	    			</div>
 	    		</div>
 	    		<div class="col-md-4 col-sm-12 col-xs-12 text-center panel panel-default">
 	    			<div class="pane-body">
 	    				 <p><i class="fa fa-fire"></i> 仕事内容</p>
-	    				<p class="panel-content"><%= current_farmer.job_about %></p>
+	    				<p class="panel-content"><%= @farmer.job_about %></p>
 	    			</div>
 	    		</div>
 	    	 </div>
 		</section>
         <!--  end title -->
         
-        <!-- links -->
-        <section class="mypage-links">
-            <div class="col-md-offset-1">
-                <%= link_to "お仕事一覧", jobs_path(@farmer), class:"col-md-5 col-sm-6 col-xs-6 button-line text-center" %>
-                <%= link_to "農家の紹介", farmer_path(current_farmer), class:"col-md-5 col-sm-6 col-xs-6 button-line text-center" %>
-            </div>
-        </section>
+       <!-- links -->
+        <div class="jumbotron col-md-12 col-xs-12 col-sm-12">
+            <%= link_to "農家の紹介", farmer_path(@farmer), class:"col-md-4 col-sm-4 col-xs-4 button-line text-center" %>
+            <%= link_to "お仕事一覧", farmer_jobs_path(@farmer), class:"col-md-4 col-sm-4 col-xs-4 button-line text-center" %>
+            <%= link_to "ブログ", farmer_blogs_path(@farmer), class:"col-md-4 col-sm-4 col-xs-4 button-line text-center" %>
+        </div>
         <!-- end links -->
         
         <!--  list  -->
         <div class="list jumbotron col-md-12 col-sm-12 col-xs-12">
         	<% @farmer.jobs.each do |job| %>
-			<div class="panel panel-primary panel-list">
-    			<div class="panel-heading"> 
-				</div>
-            
-			<div class="panel-body">
-				<div class="panel-title">
-				<div class="row">
-					<% if job.job_images.present? %>
-						<% job.job_images.each do |image| %>
-	                      <%= attachment_image_tag image, :image, class:"panel-img col-md-4" %>
-	                	<% end %>
-                	<% else %>
-                		<%= image_tag 'indexPhoto01.png',class: "panel-img col-md-4" %>
-					<% end %>
-					<div class="panel-tags">
-						<button type="button" class="btn btn-primary btn-xs">お米農家</button>
-						<button type="button" class="btn btn-primary btn-xs">厚木市</button>
-					</div>
-					<h3 class="col-md-6">
-						<%= job.name %>
-					</h3>
-					<%= link_to "詳しく", job_path(job), class:"btn btn-default btn-lage"  %>
-				</div>
-				</div>	
-    			<table class="table table-condensed">
-                    <tbody>
-                            <tr>
-                                <td><p><i class="fa fa-map-marker"></i> 日程</p></td>
-                                <td><p><%= job.date %></p></td>
-                            </tr>
-                            <tr>
-                                <td><p><i class="fa fa-map-marker"></i> 時給</p></td>
-                                <td><p><%= job.price_perhour %>円</p></td>
-                            </tr>
-                            <tr>
-                                <td><p><i class="fa fa-map-marker"></i> 場所</p></td>
-                                <td><p><%= job.place %></p></td>
-                            </tr>
-                    </tbody>
-                </table>
-                <%= link_to "編集する", edit_job_path(job), class:"btn btn-warning btn-lg active btn-send"  %>
-			</div>
-          </div>
-          <% end %>
+	   			<div class="panel panel-primary panel-list">
+	       		<div class="panel-heading"></div>
+	   			   <div class="panel-body">
+	   				    <div class="panel-title">
+	   				       <div class="row">
+	     				      	 <% job.job_images.each do |image| %>
+		                             <%= attachment_image_tag image, :image, class:"panel-img panel-img-search col-md-4" %>
+		                         <% end %>
+	           					   	<%= link_to job.name, job_path(job),class:"col-md-6 search-content-title" %>
+					         </div>
+					      </div>	
+	    			   <table class="table table-condensed">
+	                     <tbody>
+	                        <tr>
+	                          <td><p><i class="fa fa-map-marker"></i> 日程</p></td>
+	                          <td><p><%= job.date %></p></td>
+	                        </tr>
+	                        <tr>
+	                          <td><p><i class="fa fa-map-marker"></i> 時給</p></td>
+	                          <td><p><%= job.price_perhour %>円</p></td>
+	                        </tr>
+	                        <tr>
+	                          <td><p><i class="fa fa-map-marker"></i> 場所</p></td>
+	                          <td><p><%= job.place %></p></td>
+	                        </tr>
+	                    </tbody>
+	                  </table>
+	                  <div class="text-center">
+	                      <button type="button" class="btn btn-lg btn-submit">編集する　<i class="fa fa-chevron-right"></i></button>
+	                  </div>
+				  </div>
+	             </div>
+            <% end %>
         </div>
         <!--  end list  -->
-        </div>
    	</div>
 </main>
 </div>
 <%= render 'partial/footer' %>
+<style>
+	body{
+        background-color: #F7F7F7;
+    }
+</style>

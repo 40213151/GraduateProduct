@@ -10,7 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180330073312) do
+ActiveRecord::Schema.define(version: 20180406180903) do
+
+  create_table "blog_images", force: :cascade do |t|
+    t.string "blog_id"
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "blogs", force: :cascade do |t|
+    t.string "blog_title"
+    t.string "blog_content"
+    t.integer "farmer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.index ["farmer_id"], name: "index_blogs_on_farmer_id"
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "farmer_images", force: :cascade do |t|
     t.integer "farmer_id"
@@ -75,6 +102,24 @@ ActiveRecord::Schema.define(version: 20180330073312) do
     t.index ["farmer_id"], name: "index_jobs_on_farmer_id"
   end
 
+  create_table "mails", force: :cascade do |t|
+    t.text "body"
+    t.integer "talk_id"
+    t.integer "student_id"
+    t.integer "farmer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["farmer_id"], name: "index_mails_on_farmer_id"
+    t.index ["student_id"], name: "index_mails_on_student_id"
+    t.index ["talk_id"], name: "index_mails_on_talk_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "reservations", force: :cascade do |t|
     t.integer "student_id"
     t.integer "job_id"
@@ -86,6 +131,17 @@ ActiveRecord::Schema.define(version: 20180330073312) do
     t.datetime "updated_at", null: false
     t.index ["job_id"], name: "index_reservations_on_job_id"
     t.index ["student_id"], name: "index_reservations_on_student_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "description"
+    t.integer "rate"
+    t.integer "farmer_id"
+    t.integer "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["farmer_id"], name: "index_reviews_on_farmer_id"
+    t.index ["student_id"], name: "index_reviews_on_student_id"
   end
 
   create_table "student_images", force: :cascade do |t|
@@ -124,6 +180,13 @@ ActiveRecord::Schema.define(version: 20180330073312) do
     t.float "longitude"
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
+  end
+
+  create_table "talks", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

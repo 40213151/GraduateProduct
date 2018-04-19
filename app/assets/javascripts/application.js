@@ -14,6 +14,7 @@
 //= require jquery
 //= require jquery.slick
 //= require bootstrap-sprockets
+//= require facebook
 //= require jquery-ui/widgets/datepicker
 //= require jquery-ui/i18n/datepicker-ja
 //= require toastr

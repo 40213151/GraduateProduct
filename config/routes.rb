@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :students, only: [:show]
   
   resources :jobs
+  
+  resources :blogs
 
   root :to => "pages#index"
   
@@ -22,8 +24,14 @@ Rails.application.routes.draw do
     resources :reservations, only: [:create]
   end
   
+  resources :students do
+    resources :reviews, only: [:create, :destroy]
+  end
+  
   get "/farmers/:id/jobs" => "farmers#jobs", as:"farmer_jobs"
+  get "/farmers/:id/blogs" => "farmers#blogs", as:"farmer_blogs"
   get '/reservations' => 'reservations#index'
   get '/search' => 'pages#search'
-  
+  get '/room' => 'rooms#show'
+  get '/ajaxsearch' => 'pages#ajaxsearch'
 end

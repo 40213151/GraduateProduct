@@ -8,8 +8,8 @@ end
 
 gem 'rails', '~> 5.1.4'
 gem 'sqlite3', group: :development
+# 本番ではpostgressを使用する
 gem 'pg', group: :production
-gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -22,15 +22,17 @@ gem "jquery-slick-rails"
 gem "font-awesome-rails"
 gem 'devise'
 gem 'toastr-rails'
+gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'geocoder'
 gem 'mysql2'
 gem 'jquery-ui-rails'
 gem "refile", github: 'refile/refile', require: "refile/rails"
 gem "refile-mini_magick", github: 'refile/refile-mini_magick'
+gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'firebase'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
-gem 'geocoder'
 gem 'geokit-rails'
 gem "figaro", "~> 1.1.0"
 

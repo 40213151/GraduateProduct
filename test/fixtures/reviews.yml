@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  rate: 1
+  farmer: one
+  student: one
+
+two:
+  description: MyText
+  rate: 1
+  farmer: two
+  student: two

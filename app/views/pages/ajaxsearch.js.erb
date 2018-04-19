@@ -1,0 +1,26 @@
+<% @arrjobs.each do |job| %>
+  //markerはこの関数の中で同じ変数
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(<%= job.latitude %>, <%= job.longitude %>),
+      map: map
+    });
+
+  // マーカー配列にマーカを保存
+    markers.push(marker);
+
+    // マーカーがクリックされた時の処理
+    marker.addListener('click', function() {
+      
+      var content = "<div>" + '<a href="/jobs/' + <%= job.id %> +'">' + "</a>" + '<br>' + "<h5><%= job.name %></h5>" + "<div class="+"col-md-12"+">"+ "</div>";
+
+      // infowindowを作成
+      var infowindow = new google.maps.InfoWindow({
+        content: content,
+        maxWidth: 280
+      });
+
+      infowindow.open(map, this);
+      infowindows.push(infowindow);
+
+    });
+<% end %>

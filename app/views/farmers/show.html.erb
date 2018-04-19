@@ -1,5 +1,4 @@
 <%= render 'partial/navbar' %>
-<div class="show">
 <main class="container">
 	<div class="row">
         <!-- title -->
@@ -7,7 +6,7 @@
 			 <div class="jumbotron col-md-12 col-xs-12 col-sm-12">
 				<h3><%= @farmer.name %></h3>
 				<p><i class="fa fa-map-marker"></i><%= @farmer.place %></p>
-				<%= image_tag current_farmer.image, class:"img-responsive top-img col-md-12 col-sm-12" %>
+				<%= image_tag @farmer.image, class:"img-responsive top-img col-md-12 col-sm-12" %>
 	    		<div class="col-md-4 col-sm-12 col-xs-12 text-center panel panel-default">
 	    			<div class="pane-body">
 	    				<p><i class="fa fa-user"></i> 従業員数</p>
@@ -31,106 +30,104 @@
         <!--  end title -->
         
         <!-- links -->
-        <section class="mypage-links">
-            <div class="col-md-offset-1">
-                <%= link_to "お仕事一覧", farmer_jobs_path(@farmer), class:"col-md-5 col-sm-6 col-xs-6 button-line text-center" %>
-                <%= link_to "農家の紹介", farmer_path(@farmer), class:"col-md-5 col-sm-6 col-xs-6 button-line text-center" %>
-            </div>
-        </section>
+        <div class="jumbotron col-md-12 col-xs-12 col-sm-12">
+            <%= link_to "農家の紹介", farmer_path(@farmer), class:"col-md-4 col-sm-4 col-xs-4 button-line text-center" %>
+            <%= link_to "お仕事一覧", farmer_jobs_path(@farmer), class:"col-md-4 col-sm-4 col-xs-4 button-line text-center" %>
+            <%= link_to "ブログ", farmer_blogs_path(@farmer), class:"col-md-4 col-sm-4 col-xs-4 button-line text-center" %>
+        </div>
         <!-- end links -->
 
         <!-- content -->
-        <section class="content">
+        <section class="content what-farmer-do">
         	<div class="jumbotron col-md-12 col-xs-12 col-sm-12">
         		<h3>なにをやっているか</h3>
-        		<%= @farmer.description_about %>
+        		<%= simple_format(@farmer.description_about) %>
         	</div>
        </section>
         <!-- end content -->
-        
-        <!-- slider -->
-        <section class="slider">
-			<div class="jumbotron col-md-12 col-xs-12 col-sm-12">
-				<div class="cards">
-        	    <!--Card Reveal-->
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <div class="view overlay hm-white-slight z-depth-1">
-                            <%= image_tag 'moyashi02.png'%>
-                            <div class="mask waves-effect activator"></div>
-                        </div>
-                    </div>
-                </div>
-                <!--/.Card Reveal-->
-                <!--Card Reveal-->
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <div class="view overlay hm-white-slight z-depth-1">
-                            <%= image_tag 'moyashi02.png'%>
-                            <div class="mask waves-effect activator"></div>
-                        </div>
-                    </div>
-                </div>
-                <!--/.Card Reveal-->
-                <!--Card Reveal-->
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <div class="view overlay hm-white-slight z-depth-1">
-                            <%= image_tag 'moyashi02.png'%>
-                            <div class="mask waves-effect activator"></div>
-                        </div>
-                    </div>
-                </div>
-                <!--/.Card Reveal-->
-                <!--Card Reveal-->
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <div class="view overlay hm-white-slight z-depth-1">
-                            <%= image_tag 'moyashi02.png'%>
-                            <div class="mask waves-effect activator"></div>
-                        </div>
-                    </div>
-                </div>
-                <!--/.Card Reveal-->
-                <!--Card Reveal-->
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <div class="view overlay hm-white-slight z-depth-1">
-                            <%= image_tag 'moyashi02.png'%>
-                            <div class="mask waves-effect activator"></div>
-                        </div>
-                    </div>
-                </div>
-                <!--/.Card Reveal-->
-                <!--Card Reveal-->
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <div class="view overlay hm-white-slight z-depth-1">
-                            <%= image_tag 'moyashi02.png'%>
-                            <div class="mask waves-effect activator"></div>
-                        </div>
-                    </div>
-                </div>
-                <!--/.Card Reveal-->
-              </div>
-		    </div>
-        </section>
-        <!-- end slider -->
         
         <!-- content -->
         <section class="content">
         	<div class="jumbotron col-md-12 col-xs-12 col-sm-12">
         		<h3>私たちについて</h3>
-        	
-        		<%= @farmer.description_us %>
+                <%= simple_format(@farmer.description_us) %>
         	</div>
        </section>
         <!-- end content -->
         
+        <!-- jobs -->
+        <section class="farmer-jobs">
+        	<div class="jumbotron col-md-11 col-xs-11 col-sm-11">
+        		<h3>お仕事</h3>
+        		<% @jobs.each do |job| %>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-job text-center" style="padding: 0;">
+                            <%= link_to(job) do %>
+                                <% job.job_images.each do |image| %>
+	                              <%= attachment_image_tag image, :image, class:"panel-img col-md-4" %>
+	                	        <% end %>
+                            <% end %>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-8 col-xs-8">
+                                    <%= link_to job.name, job %><br>
+                                </div>
+                                <div class="col-md-3 col-xs-3">
+                                    <%= image_tag job.farmer.image,class:"img-circle profile-1" %>
+                                </div>
+                                <div class="price-card price-card-b">
+                                    <%= job.price_perhour %> 円     
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+        	</div>
+       </section>
+        <!-- end content -->
+        
+        <!-- blogs -->
+        <section class="content">
+        	<div class="jumbotron col-md-11 col-xs-11 col-sm-11">
+        		<h3>ブログ</h3>
+        	    <% @farmer.blogs.each do |blog| %>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-job text-center" style="padding: 0;">
+                            <%= link_to(blog) do %>
+	                              <% blog.blog_images.each do |image| %>
+	                                  <%= attachment_image_tag image, :image, class:"panel-img col-md-4" %>
+	                	         <% end %>
+                            <% end %>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-8 col-xs-8">
+                                    <%= link_to blog.blog_title, blog %><br>
+                                </div>
+                                <div class="col-md-3 col-xs-3">
+                                    <%= image_tag blog.farmer.image,class:"img-circle profile-1" %>
+                                </div>
+                                <div class="price-card price-card-b">
+                                    <%= blog.created_at.strftime("%Y年%m月%d日") %>     
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+        	</div>
+       </section>
+        <!-- end blogs -->
+        
        <!--  table  -->
        <section class="job-table">
       			<div class="jumbotron">
-       		
        			<div class="row">
 					<div class="col-md-10">
 					<h3>会社概要</h3>
@@ -185,7 +182,6 @@
     <!--  send end  -->
    	</div>
 </main>
-</div>
 <%= render 'partial/footer' %>
 <!-- google map  -->
 <script>
@@ -217,41 +213,3 @@ function initMap() {
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYa7BUZC8vDfbqree2TYehmkX6S8r2ugk&signed_in=true&callback=initMap">
 </script>
 <!-- end google map -->
-<!-- slick -->
-<script>
-	$('.cards').slick({
-  dots: true,
-  infinite: false,
-  speed: 300,
-  slidesToShow: 3,
-  slidesToScroll: 3,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        infinite: true,
-        dots: true
-      }
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
-    }
-    // You can unslick at a given breakpoint now by adding:
-    // settings: "unslick"
-    // instead of a settings object
-  ]
-});
-</script>

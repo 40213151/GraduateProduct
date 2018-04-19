@@ -1,130 +1,117 @@
 <%= render 'partial/navbar' %>
-<div class="container">
-   <div class="row">
-      <div class="col-md-12">
-         <div class="row">
-      			<div class="page-header col-md-8">
-      				<h4>地図検索</h4>
-      			</div>
-		     </div>
-        <div class="col-md-12">
-          <div id="map" style="height: 500px;"></div>
-        </div>
-       <!-- 検索フォーム -->
-        <section class="search-form">
-         	   <table class="table table-bordered">
-               	<tbody>
-               		<tr>
-                 			<th class="col-md-3"> キーワード</th>
-                 			<td td class="col-md-9 form-inline">
-                 			   <%= text_field_tag :search, params[:search], placeholder: "Where are you going?", class: "form-control controls",id:"pac-input" %>
-                 			</td>
-               		</tr>
-               	</tbody>
-            </table>
-            <div class="row">
-            	  <button class="btn btn-warning  btn-lg active btn-search col-md-5 col-sm-7 col-xs-10">検索する</button>
-            </div>
-        </section>
-         <!-- end search-form -->
-      </div>
-   </div>
+
+<div class="col-md-6">
+  <div class="">
+  <%= text_field_tag :search, params[:search], placeholder: "Where are you going?", class: "form-control",id:"pac-input" %>
 </div>
-<%= render 'partial/footer' %>
+
+</div>
+
+<div class="col-md-6">
+  <div id="map" style="height: 500px;">
+      
+  </div>
+</div>
+
 <script>
 function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -33.8688, lng: 151.2195},
-          zoom: 13
-        });
-        var input = /** @type {!HTMLInputElement} */(
-            document.getElementById('pac-input'));
+    map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat:<%= @latitude %>, lng: <%= @longitude %>},
+    zoom: 13
+  });
+  var input = /** @type {!HTMLInputElement} */(
+      document.getElementById('pac-input'));
 
-        var types = document.getElementById('type-selector');
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  autocomplete.bindTo('bounds', map);
+  
+  // マーカーとインフォウィンドウの配列を用意
+  markers = [];
+  infowindows = [];
 
-        var autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.bindTo('bounds', map);
-
-        // マーカーとwindowの配列を用意
-        markers = [];
-        infowindow = [];
+  <% @jobs.each do |job| %>
         
-        <% @jobs.each do |job| %>
+    //markerはこの関数の中で同じ変数
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(<%= job.latitude %>, <%= job.longitude %>),
+      map: map
+    });
+
+    // マーカー配列にマーカを保存
+    markers.push(marker);
+    
+    // マーカーがクリックされた時の処理
+    marker.addListener('click', function(){
+      
+        var content = "<div>" + '<a href="/jobs/' + <%= job.id %> +'">' + "</a>" + '<br>' + "<h5><%= job.name %></h5>" + "<div class="+"col-md-12"+">"+ "</div>";
+    
+      // infowindowを作成
+      var infowindow = new google.maps.InfoWindow({
+        content: content,
+        maxWidth: 280
+      });
+
+      infowindow.open(map, this);
+      infowindows.push(infowindow);
+      
+    });
+            
+  <% end %>
+  
+   autocomplete.addListener('place_changed', function() {
+
+     // すべてのinfowindowを消す
+    infowindows.forEach(function(infowindow) {
+      infowindow.close();
+    });
+    infowindows = [];
+
+    // すべてのmarkerを消す
+    markers.forEach(function(marker) {
+        marker.setVisible(false);
+    });
+    markers = [];
+
+    var place = autocomplete.getPlace();
+    if (!place.geometry) {
+      window.alert("Autocomplete's returned place contains no geometry");
+      return;
+    }
+
+    // If the place has a geometry, then present it on a map.
+    if (place.geometry.viewport) {
+      map.fitBounds(place.geometry.viewport);
+      map.setZoom(13);
+    } else {
+      map.setCenter(place.geometry.location);
+      map.setZoom(13);  // Why 13? Because it looks good.
+    }
+
+    // 入力欄の場所の緯度経度情報を取得
+    var lat = place.geometry.location.lat();
+    var lng = place.geometry.location.lng();
         
-        // markerはこの関数の中で同じ変数
-        var marker = new google.maps.Marker({
-          position: new google.maps.LatLng(<%= job.latitude %>, <%= job.longitude %>),
-          map: map
-        });
-        
-        // マーカー配列にマーカーを保存
-        markers.push(marker);
-        
-        <% end %>
-        
-        // var infowindow = new google.maps.InfoWindow();
-        // var marker = new google.maps.Marker({
-        //   map: map,
-        //   anchorPoint: new google.maps.Point(0, -29)
-        // });
+    // 緯度経度情報をまとめる   
+    var geolocation = [lat,lng];
 
-        // autocomplete.addListener('place_changed', function() {
-        //   infowindow.close();
-        //   marker.setVisible(false);
-        //   var place = autocomplete.getPlace();
-        //   if (!place.geometry) {
-        //     // User entered the name of a Place that was not suggested and
-        //     // pressed the Enter key, or the Place Details request failed.
-        //     window.alert("No details available for input: '" + place.name + "'");
-        //     return;
-        //   }
+    // 場所の住所
+    var location = place.formatted_address;
 
-        //   // If the place has a geometry, then present it on a map.
-        //   if (place.geometry.viewport) {
-        //     map.fitBounds(place.geometry.viewport);
-        //   } else {
-        //     map.setCenter(place.geometry.location);
-        //     map.setZoom(17);  // Why 17? Because it looks good.
-        //   }
-        //   marker.setIcon(/** @type {google.maps.Icon} */({
-        //     url: place.icon,
-        //     size: new google.maps.Size(71, 71),
-        //     origin: new google.maps.Point(0, 0),
-        //     anchor: new google.maps.Point(17, 34),
-        //     scaledSize: new google.maps.Size(35, 35)
-        //   }));
-        //   marker.setPosition(place.geometry.location);
-        //   marker.setVisible(true);
+    // autocompleteの入力欄が変更されたらurlも変更して履歴に残す
+    url = "/search?utf8=✓&search="+place.formatted_address;
+    
+    window.history.pushState(null,null,url);
 
-        //   var address = '';
-        //   if (place.address_components) {
-        //     address = [
-        //       (place.address_components[0] && place.address_components[0].short_name || ''),
-        //       (place.address_components[1] && place.address_components[1].short_name || ''),
-        //       (place.address_components[2] && place.address_components[2].short_name || '')
-        //     ].join(' ');
-        //   }
-
-        //   infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-        //   infowindow.open(map, marker);
-        // });
-
-        // Sets a listener on a radio button to change the filter type on Places
-        // Autocomplete.
-        function setupClickListener(id, types) {
-          var radioButton = document.getElementById(id);
-          radioButton.addEventListener('click', function() {
-            autocomplete.setTypes(types);
-          });
-        }
-
-        setupClickListener('changetype-all', []);
-        setupClickListener('changetype-address', ['address']);
-        setupClickListener('changetype-establishment', ['establishment']);
-        setupClickListener('changetype-geocode', ['geocode']);
-      }
+    $.ajax({
+      url: '/ajaxsearch',
+        // this data is data for sending to url
+        data: {'geolocation': geolocation}
+    });
+    
+  });
+  
+}
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYa7BUZC8vDfbqree2TYehmkX6S8r2ugk&signed_in=true&libraries=places&callback=initMap"
-        async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgUpeCKqhlUcC1vyYjH8-YZVsX9R-VjQI&signed_in=true&libraries=places&callback=initMap"
+    async defer></script>
