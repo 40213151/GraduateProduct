@@ -1,0 +1,7 @@
+// 先頭に足す _message.html.erb to #chat
+// messages/_message　をrender
+// _message.html.erb内のmessageは@message
+$('#chat').prepend("<%= j(render @message)%>");  
+
+// メッセージの入力欄を空にする
+$('#new_message')[0].reset();

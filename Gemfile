@@ -27,6 +27,8 @@ gem 'omniauth-facebook'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'geocoder'
 gem 'mysql2'
+gem 'slim'
+gem 'redis'
 gem 'jquery-ui-rails'
 gem "refile", github: 'refile/refile', require: "refile/rails"
 gem "refile-mini_magick", github: 'refile/refile-mini_magick'

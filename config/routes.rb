@@ -28,6 +28,10 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create, :destroy]
   end
   
+  resources :conversations, only: [:index, :create] do
+    resources :messages, only: [:index, :create]
+  end
+  
   get "/farmers/:id/jobs" => "farmers#jobs", as:"farmer_jobs"
   get "/farmers/:id/blogs" => "farmers#blogs", as:"farmer_blogs"
   get '/reservations' => 'reservations#index'
