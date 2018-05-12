@@ -72,6 +72,19 @@
        </section>
     <!-- table end -->
     
+    <!-- reviews -->
+    <section class="near-jobs">
+      <div class="jumbotron">
+        <div class="row">
+          <div class="col-md-10">
+            <h3>レビュー<%= @reviews.count %>件</h3>
+            <div id="average_star_rate"></div>
+              <%= render 'reviews/form' if !@currentFarmerReview %>
+              <%= render 'reviews/list' %>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- end near jobs  -->
     
     <!--  send  -->
