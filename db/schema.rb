@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180508062030) do
+ActiveRecord::Schema.define(version: 20180514073727) do
 
   create_table "blog_images", force: :cascade do |t|
     t.string "blog_id"
@@ -192,6 +192,7 @@ ActiveRecord::Schema.define(version: 20180508062030) do
     t.datetime "image_updated_at"
     t.float "latitude"
     t.float "longitude"
+    t.string "image"
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end

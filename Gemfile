@@ -27,6 +27,8 @@ gem 'omniauth-facebook'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'geocoder'
 gem 'mysql2'
+# Image Uploader
+gem 'carrierwave'
 gem 'slim'
 gem 'redis'
 gem 'jquery-ui-rails'

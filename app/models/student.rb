@@ -5,6 +5,7 @@ class Student < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :student_images, dependent: :destroy
   has_many :reservations
   has_many :reviews
   
