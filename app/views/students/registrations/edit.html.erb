@@ -21,8 +21,8 @@
             <%= f.text_field :name, autofocus: true , :class => 'form-control' %>
           </div>
           <div class="form-group">
-            <label for="exampleFormControlInput1">画像をください</label>
-              <%= f.file_field :image,  :class => 'form-control' %>
+              <%= f.label :'画像をください' %>
+              <%= f.file_field :image %>
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">大学名と学部名を教えてください</label>

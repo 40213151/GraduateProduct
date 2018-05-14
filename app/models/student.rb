@@ -4,10 +4,11 @@ class Student < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
-  has_many :student_images, dependent: :destroy
+  
   has_many :reservations
   has_many :reviews
+  
+  mount_uploader :image, ImagesUploader
   
   def farmer
     return farmer
@@ -15,8 +16,6 @@ class Student < ApplicationRecord
   
   has_attached_file :image, styles: { medium: "400x400>", thumb: "100x100>" }, default_url: "avatar_default.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-  
-  accepts_attachments_for :student_images, attachment: :image
   
   geocoded_by :place
   after_validation :geocode, :if => :place_changed?
