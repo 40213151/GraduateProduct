@@ -6,7 +6,7 @@
 			 <div class="jumbotron col-md-12 col-xs-12 col-sm-12">
 				<h3><%= @farmer.name %></h3>
 				<p><i class="fa fa-map-marker"></i><%= @farmer.place %></p>
-				<%= image_tag @farmer.image, class:"img-responsive top-img col-md-12 col-sm-12" %>
+				<%= image_tag @farmer.fimage.url, class:"img-responsive top-img col-md-12 col-sm-12" %>
 	    		<div class="col-md-4 col-sm-12 col-xs-12 text-center panel panel-default">
 	    			<div class="pane-body">
 	    				<p><i class="fa fa-user"></i> 従業員数</p>
@@ -63,11 +63,7 @@
                 <div class="col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-heading panel-job text-center" style="padding: 0;">
-                            <%= link_to(job) do %>
-                                <% job.job_images.each do |image| %>
-	                              <%= attachment_image_tag image, :image, class:"panel-img col-md-4" %>
-	                	        <% end %>
-                            <% end %>
+                            <%= image_tag job.jimage.url, class:"panel-img col-md-4" %>
                         </div>
 
                         <div class="panel-body">
@@ -76,7 +72,7 @@
                                     <%= link_to job.name, job %><br>
                                 </div>
                                 <div class="col-md-3 col-xs-3">
-                                    <%= image_tag job.farmer.image,class:"img-circle profile-1" %>
+                                    <%= image_tag job.farmer.fimage.url ,class:"img-circle profile-1" %>
                                 </div>
                                 <div class="price-card price-card-b">
                                     <%= job.price_perhour %> 円     

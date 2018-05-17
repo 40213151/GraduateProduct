@@ -14,5 +14,4 @@ class ReservationsController < ApplicationController
         def reservation_params
             params.require(:reservation).permit(:date, :price_perhour, :total_price, :job_id)
         end
-
 end

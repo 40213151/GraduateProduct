@@ -8,8 +8,6 @@ end
 
 gem 'rails', '~> 5.1.4'
 gem 'sqlite3', group: :development
-# 本番ではpostgressを使用する
-gem 'pg', group: :production
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -28,7 +26,8 @@ gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'geocoder'
 gem 'mysql2'
 # Image Uploader
-gem 'carrierwave'
+gem 'carrierwave', '1.2.2'
+gem 'mini_magick', '4.8.0'
 gem 'slim'
 gem 'redis'
 gem 'jquery-ui-rails'
@@ -36,7 +35,6 @@ gem "refile", github: 'refile/refile', require: "refile/rails"
 gem "refile-mini_magick", github: 'refile/refile-mini_magick'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'firebase'
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'geokit-rails'
 gem "figaro", "~> 1.1.0"
 
@@ -45,6 +43,12 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+end
+
+# 本番ではpostgressを使用する
+group :production do
+  gem 'pg'
+  gem 'fog-aws'
 end
 
 group :development do

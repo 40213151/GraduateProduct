@@ -1,8 +1,9 @@
 class Job < ApplicationRecord
   belongs_to :farmer
   has_many :reservations
-  has_many :job_images, dependent: :destroy
-  accepts_attachments_for :job_images, attachment: :image
+  
+  # carry wave
+  mount_uploader :jimage, JimageUploader
   
   # 必須項目
   validates :name, presence: true
@@ -30,4 +31,14 @@ class Job < ApplicationRecord
   
   geocoded_by :place
   after_validation :geocode, :if => :place_changed?
+  
+  private
+  
+   # アップロードされた画像のサイズをバリデーションする
+    def jimage_size
+      if jimage.size > 5.megabytes
+        errors.add(:picture, "should be less than 5MB")
+      end
+    end
+  
 end

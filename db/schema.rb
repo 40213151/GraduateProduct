@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180514073727) do
+ActiveRecord::Schema.define(version: 20180516140644) do
 
   create_table "blog_images", force: :cascade do |t|
     t.string "blog_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20180514073727) do
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
+    t.string "bimage"
     t.index ["farmer_id"], name: "index_blogs_on_farmer_id"
   end
 
@@ -84,6 +85,8 @@ ActiveRecord::Schema.define(version: 20180514073727) do
     t.datetime "image_updated_at"
     t.float "latitude"
     t.float "longitude"
+    t.string "fiamge"
+    t.string "fimage"
     t.index ["email"], name: "index_farmers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_farmers_on_reset_password_token", unique: true
   end
@@ -107,6 +110,7 @@ ActiveRecord::Schema.define(version: 20180514073727) do
     t.datetime "date"
     t.float "latitude"
     t.float "longitude"
+    t.string "jimage"
     t.index ["farmer_id"], name: "index_jobs_on_farmer_id"
   end
 

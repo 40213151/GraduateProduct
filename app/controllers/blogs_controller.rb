@@ -12,7 +12,6 @@ class BlogsController < ApplicationController
   def new
     # 現在のユーザーのお仕事の作成
     @blog = current_farmer.blogs.build
-    @blog.blog_images.build
   end
 
   def create
@@ -40,7 +39,7 @@ class BlogsController < ApplicationController
   
   private
   def blog_params
-    params.require(:blog).permit(:blog_title, :blog_content, blog_images_images: [])
+    params.require(:blog).permit(:blog_title, :blog_content, :bimage)
   end
 
   def set_blog

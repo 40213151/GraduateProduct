@@ -8,11 +8,8 @@ class Farmer < ApplicationRecord
     has_many :jobs
     has_many :reviews
     has_many :blogs
-    has_many :product_images, dependent: :destroy
-    accepts_attachments_for :product_images, attachment: :image
     
-    has_attached_file :image, styles: { medium: "400x400>", thumb: "100x100>" }, default_url: "avatar_default.png"
-    validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+    mount_uploader :fimage, FimageUploader
     
     def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |farmer|
@@ -28,4 +25,13 @@ class Farmer < ApplicationRecord
     
     geocoded_by :place
     after_validation :geocode, :if => :place_changed?
+
+    private
+  
+   # アップロードされた画像のサイズをバリデーションする
+    def fimage_size
+      if fimage.size > 5.megabytes
+        errors.add(:picture, "should be less than 5MB")
+      end
+    end
 end

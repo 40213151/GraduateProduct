@@ -33,7 +33,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <!-- image -->
-                            <%= image_tag current_farmer.image, class:"img-circle profile-0" %>
+                            <%= image_tag current_farmer.fimage.to_s, class:"img-circle profile-0" %>
                             <%= current_farmer.name %>
                             <span class="caret"></span>
                         </a>

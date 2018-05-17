@@ -10,12 +10,10 @@
 				<p><i class="fa fa-map-marker"></i><%= @job.date %></p>
 			 </div>
 			 <div class="col-md-6 job_farmer-image">
-                <p class="job-farmer-name"><%= image_tag @job.farmer.image, class:"img-circle profile-0" %>
+                <p class="job-farmer-name"><%= image_tag @job.farmer.fimage.url, class:"img-circle profile-0" %>
                 <%= @job.farmer.name %></p>
             </div>
-				<% @job.job_images.each do |image| %>
-                      <%= attachment_image_tag image, :image, class:"img-responsive top-img col-md-12 col-sm-12" %>
-                <% end %>
+              <%= image_tag @job.jimage.url, class:"img-responsive top-img col-md-12 col-sm-12" %>
 	    		<div class="col-md-4 col-sm-12 col-xs-12 text-center panel panel-default">
 	    			<div class="pane-body">
 	    				<p><i class="fa fa-user"></i>時給</p>
